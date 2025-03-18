@@ -27,6 +27,9 @@ day = now.day
 weekdays_kr = ["월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일"]
 today_kr = weekdays_kr[now.weekday()]  # 한국어 요일 변환
 
+print(month)
+print(day)
+print(today_kr)
 if today_kr in lunch_data:
     menu = lunch_data[today_kr].split(',')
     menu_list = []
@@ -41,5 +44,5 @@ WEBHOOK_URL = os.getenv("WEBHOOK_URL")
 payload = json.dumps({"text": message_text})
 headers = {"Content-Type": "application/json"}
 response = requests.post(WEBHOOK_URL, headers=headers, data=payload)
-
+print(payload)
 print(f"Webhook 응답 코드: {response.status_code}")
