@@ -22,14 +22,24 @@ for row in rows:
         lunch_data[date] = lunch
 
 now = datetime.now()
+month = now.month
+day = now.day
 weekdays_kr = ["월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일"]
 today_kr = weekdays_kr[now.weekday()]  # 한국어 요일 변환
 
-payload = json.dumps({"text": f"😋 오늘의 중식 메뉴:\n{lunch_data[today_kr]}"})
+if today_kr in lunch_data:
+    menu = lunch_data[today_kr].split(',')
+    menu_list = []
+    for item in menu:
+        menu_list.append(str(len(menu_list) + 1) +'.' + item.strip() + '\n')
+
+    message_text = f"{month}월 {day}일 {today_kr}\n😋 오늘의 메뉴\n{''.join(menu_list)}"
+else:
+    message_text = f"{month}월 {day}일 {today_kr}\n오늘의 중식 정보가 없습니다."
+
 headers = {"Content-Type": "application/json"}
 
 WEBHOOK_URL = os.getenv("WEBHOOK_URL")
-
 response = requests.post(WEBHOOK_URL, headers=headers, data=payload)
 
 print(f"Webhook 응답 코드: {response.status_code}")
