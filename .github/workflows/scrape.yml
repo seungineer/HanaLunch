@@ -24,4 +24,4 @@ jobs:
       - name: 중식 크롤링 및 Webhook 전송
         env:
           WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
-        run: python scrape_lunch.py
+        run: python lunch_bot.py
