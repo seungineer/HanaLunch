@@ -1,6 +1,7 @@
 import requests
-from bs4 import BeautifulSoup
 import json
+import os
+from bs4 import BeautifulSoup
 from datetime import datetime
 
 URL = "https://www.kopo.ac.kr/gm/content.do?menu=12623"
