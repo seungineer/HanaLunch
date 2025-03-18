@@ -1,0 +1,27 @@
+name: Fetch Lunch Menu & Send Webhook
+
+on:
+  schedule:
+    - cron: '0 8 * * *' 
+  workflow_dispatch:
+
+jobs:
+  scrape_and_send:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repository 체크아웃
+        uses: actions/checkout@v3
+
+      - name: Python 설정
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: 필요한 패키지 설치
+        run: pip install requests beautifulsoup4
+
+      - name: 중식 크롤링 및 Webhook 전송
+        env:
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+        run: python scrape_lunch.py
