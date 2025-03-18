@@ -37,9 +37,9 @@ if today_kr in lunch_data:
 else:
     message_text = f"{month}월 {day}일 {today_kr}\n오늘의 중식 정보가 없습니다."
 
-headers = {"Content-Type": "application/json"}
-
 WEBHOOK_URL = os.getenv("WEBHOOK_URL")
+payload = json.dumps({"text": message_text})
+headers = {"Content-Type": "application/json"}
 response = requests.post(WEBHOOK_URL, headers=headers, data=payload)
 
 print(f"Webhook 응답 코드: {response.status_code}")
