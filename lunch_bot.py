@@ -2,7 +2,7 @@ import requests
 import json
 import os
 from bs4 import BeautifulSoup
-from datetime import datetime
+from datetime import datetime, timedelta
 
 URL = "https://www.kopo.ac.kr/gm/content.do?menu=12623"
 response = requests.get(URL)
@@ -21,7 +21,8 @@ for row in rows:
         lunch = columns[2].get_text(strip=True).replace("\n", ", ")
         lunch_data[date] = lunch
 
-now = datetime.now()
+now_utc = datetime.now(datetime.timezone.utc)
+now = now_utc + timedelta(hours=9)
 month = now.month
 day = now.day
 weekdays_kr = ["월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일"]
