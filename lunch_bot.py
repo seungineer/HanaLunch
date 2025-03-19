@@ -35,9 +35,9 @@ if today_kr in lunch_data:
     menu = lunch_data[today_kr].split(',')
     menu_list = []
     for item in menu:
-        menu_list.append(str(len(menu_list) + 1) +'. ' + item.strip() + '\\n')
+        menu_list.append(f"{str(len(menu_list) + 1)}. {item.strip()}\\\n")
     menu_list[-1] = menu_list[-1][:-2]
-    message_text = f"{month}월 {day}일 {today_kr}\\\n😋 오늘의 메뉴\\n{''.join(menu_list)}"
+    message_text = f"{month}월 {day}일 {today_kr}\\\n😋 오늘의 메뉴\\\n{''.join(menu_list)}"
 else:
     message_text = f"{month}월 {day}일 {today_kr}\\\n오늘의 중식 정보가 없습니다."
 
