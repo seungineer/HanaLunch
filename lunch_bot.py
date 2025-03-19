@@ -2,7 +2,7 @@ import requests
 import json
 import os
 from bs4 import BeautifulSoup
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 URL = "https://www.kopo.ac.kr/gm/content.do?menu=12623"
 response = requests.get(URL)
@@ -21,7 +21,7 @@ for row in rows:
         lunch = columns[2].get_text(strip=True).replace("\n", ", ")
         lunch_data[date] = lunch
 
-now_utc = datetime.now(datetime.timezone.utc)
+now_utc = datetime.now(timezone.utc)
 now = now_utc + timedelta(hours=9)
 month = now.month
 day = now.day
