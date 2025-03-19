@@ -2,7 +2,8 @@ name: Fetch Lunch Menu & Send Webhook
 
 on:
   schedule:
-    - cron: '0 8 * * *' 
+    # KST 기준 08시
+    - cron: '0 23 * * *' 
   workflow_dispatch:
 
 jobs:
