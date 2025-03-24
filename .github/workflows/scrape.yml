@@ -24,11 +24,6 @@ jobs:
       - name: Generate RSS XML
         run: python lunch_bot_rss.py
 
-      - name: Move XML to /docs folder
-        run: |
-          mkdir -p docs
-          mv lunch_rss.xml docs/lunch_rss.xml
-
       - name: Commit and Push Updated RSS
         run: |
           git config --global user.name "github-actions"
