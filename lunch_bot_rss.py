@@ -30,7 +30,7 @@ today_str = now.strftime('%Y-%m-%d')
 rss = ET.Element("rss", version="2.0")
 channel = ET.SubElement(rss, "channel")
 ET.SubElement(channel, "title").text = "폴리텍 식단 RSS"
-ET.SubElement(channel, "link").text = "https://your-username.github.io/HanaLunch/docs/lunch_rss.xml"
+ET.SubElement(channel, "link").text = "https://seungineer.github.io/HanaLunch/docs/lunch_rss.xml"
 ET.SubElement(channel, "description").text = "오늘의 메뉴 RSS crawling bot"
 ET.SubElement(channel, "language").text = "ko"
 
