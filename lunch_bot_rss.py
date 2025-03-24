@@ -37,7 +37,7 @@ ET.SubElement(channel, "language").text = "ko"
 item = ET.SubElement(channel, "item")
 if today_kr in lunch_data:
     menu = lunch_data[today_kr].split(',')
-    menu_str = "\n"+"\n".join([f"{i+1}. {item.strip()}" for i, item in enumerate(menu)])
+    menu_str = "\n"+"\n\n".join([f"{i+1}. {item.strip()}" for i, item in enumerate(menu)])
     ET.SubElement(item, "title").text = f"{month}월 {day}일 {today_kr} 메뉴 😋"
     ET.SubElement(item, "description").text = menu_str
 else:
