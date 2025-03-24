@@ -43,7 +43,7 @@ else:
 
 WEBHOOK_URL = os.getenv("WEBHOOK_URL")
 payload = json.dumps({"text": message_text})
-headers = {"Content-Type": "application/json"}
-response = requests.post(WEBHOOK_URL, headers=headers, data=payload)
+# headers = {"Content-Type": "application/json"}
+# response = requests.post(WEBHOOK_URL, headers=headers, data=payload)
 print(payload)
 print(f"Webhook 응답 코드: {response.status_code}")
