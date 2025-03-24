@@ -1,27 +1,38 @@
-name: Fetch Lunch Menu & Send Webhook
+name: Generate and Publish Lunch RSS
 
 on:
   schedule:
-    - cron: '0 23 * * 0-4'
+    - cron: '55 22 * * 0-4'
   workflow_dispatch:
 
 jobs:
-  scrape_and_send:
+  generate_rss:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Repository 체크아웃
+      - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Python 설정
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
 
-      - name: 필요한 패키지 설치
+      - name: Install dependencies
         run: pip install requests beautifulsoup4
 
-      - name: 중식 크롤링 및 Webhook 전송
-        env:
-          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
-        run: python lunch_bot.py
+      - name: Generate RSS XML
+        run: python lunch_bot_rss.py
+
+      - name: Move XML to /docs folder
+        run: |
+          mkdir -p docs
+          mv lunch_rss.xml docs/lunch_rss.xml
+
+      - name: Commit and Push Updated RSS
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git add docs/lunch_rss.xml
+          git commit -m "Update lunch menu RSS feed"
+          git push
