@@ -12,6 +12,7 @@ filename = f"{today}.jpg"
 
 # 메뉴 설명
 menu_text = """
+realistic photo
 1. 돈육모듬장조림
 2. 흑미밥
 3. 얼큰김치찌개
@@ -19,6 +20,7 @@ menu_text = """
 5. 치커리무침
 6. 배추김치
 위 메뉴로 구성된 대학교 학생식당 메뉴 사진
+minimalist background, Korean traditional setting 
 """
 
 # 프롬프트 생성
