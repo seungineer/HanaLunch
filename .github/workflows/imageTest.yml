@@ -1,4 +1,4 @@
-nname: Test Image Generation
+name: Test Image Generation
 
 on:
   workflow_dispatch:
