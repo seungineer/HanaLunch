@@ -1,11 +1,10 @@
-import openai
+from openai import OpenAI
 import datetime
 import base64
-import requests
 import os
 
-# OpenAI API 키
-openai.api_key = os.getenv("OPENAI_API_KEY")
+# OpenAI API 키 불러오기
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # 오늘 날짜
 today = datetime.date.today().isoformat()
@@ -25,14 +24,15 @@ menu_text = """
 prompt = f"A well-composed Korean meal showing: {menu_text}"
 
 # 이미지 생성
-response = openai.Image.create(
+response = client.images.generate(
+    model="dall-e-3",
     prompt=prompt,
-    n=1,
     size="1024x1024",
-    response_format="b64_json"
+    response_format="b64_json",
+    n=1
 )
 
 # 이미지 저장
-image_data = response['data'][0]['b64_json']
+image_data = response.data[0].b64_json
 with open(filename, "wb") as f:
     f.write(base64.b64decode(image_data))
