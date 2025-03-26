@@ -67,7 +67,7 @@ else:
 def generate_html_table(data):
     if not data:
         return "<p>오늘의 식단 정보가 없습니다.</p>"
-    html = "<table border='1'><tr><th>메뉴</th><th>탄수화물(g)</th><th>단백질(g)</th><th>지방(g)</th><th>칼로리(kcal)</th></tr>"
+    html = "<table border='2'><tr><th>메뉴</th><th>탄수화물(g)</th><th>단백질(g)</th><th>지방(g)</th><th>칼로리(kcal)</th></tr>"
     for item in data.values():
         html += f"<tr><td>{item['메뉴']}</td><td>{item['탄수화물(g)']}</td><td>{item['단백질(g)']}</td><td>{item['지방(g)']}</td><td>{item['칼로리(kcal)']}</td></tr>"
     html += "</table>"
@@ -87,7 +87,7 @@ ET.SubElement(channel, "language").text = "ko"
 item = ET.SubElement(channel, "item")
 if today_kr in lunch_data:
     ET.SubElement(item, "title").text = f"{month}월 {day}일 {today_kr} 메뉴 😋"
-    ET.SubElement(item, "description").text = f"<br><![CDATA[{table_html}]]>"
+    ET.SubElement(item, "description").text = f"<br>{table_html}"
     print(table_html)
 else:
     ET.SubElement(item, "title").text = f"{month}월 {day}일 {today_kr} 메뉴 없음"
