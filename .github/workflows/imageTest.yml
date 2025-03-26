@@ -1,7 +1,7 @@
-name: Test Image Generation
+nname: Test Image Generation
 
 on:
-  workflow_dispatch:  # 수동 실행 버튼을 GitHub에서 보여줌
+  workflow_dispatch:
 
 jobs:
   test-image:
@@ -17,7 +17,7 @@ jobs:
           python-version: '3.10'
 
       - name: Install dependencies
-        run: pip install openai==0.28 requests
+        run: pip install openai requests
 
       - name: Run image generation script
         env:
