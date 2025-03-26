@@ -25,7 +25,7 @@ prompt = f"A well-composed Korean meal showing: {menu_text}"
 
 # 이미지 생성
 response = client.images.generate(
-    model="dall-e-3",
+    model="dall-e-2",
     prompt=prompt,
     size="256x256",
     response_format="b64_json",
