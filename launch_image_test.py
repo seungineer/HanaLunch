@@ -2,9 +2,10 @@ import openai
 import datetime
 import base64
 import requests
+import os
 
 # OpenAI API 키
-openai.api_key = "YOUR_API_KEY"
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # 오늘 날짜
 today = datetime.date.today().isoformat()
