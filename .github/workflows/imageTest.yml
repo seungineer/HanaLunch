@@ -21,7 +21,7 @@ jobs:
 
       - name: Run image generation script
         env:
-          OPENAI_API_KEY: "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"
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
           python launch_image_test.py
 
