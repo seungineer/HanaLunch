@@ -19,9 +19,11 @@ jobs:
           python-version: '3.9'
 
       - name: Install dependencies
-        run: pip install requests beautifulsoup4
+        run: pip install requests beautifulsoup4 openai
 
       - name: Generate RSS XML
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY_SGNR }}
         run: python lunch_bot_rss.py
 
       - name: Commit and Push Updated RSS
