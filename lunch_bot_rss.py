@@ -36,6 +36,10 @@ today_str = now.strftime('%Y-%m-%d')
 # ==================== 식단 탄단지 정보 요청 ====================
 if today_kr in lunch_data:
     menu_items = lunch_data[today_kr].split('\r,')
+    if len(menu_items) <= 2:
+        print("menu_items: " + menu_items)
+        print("정상적인 식단이 아닙니다.")
+        exit()
     numbered_menu = "\n".join([f"{i+1}. {item.strip()}" for i, item in enumerate(menu_items)])
     prompt = f"""아래는 대학교 학생식당의 점심 메뉴입니다. 각 메뉴에 대해 메뉴명, 탄수화물(g), 단백질(g), 지방(g), 칼로리(kcal)를 JSON 형태로 제공해주세요. 각각의 데이터 정보는  농촌진흥청의 국가표준식품성분표, 식품의약품안전처의 식품영양정보, 또는 일반적인 영양 성분 앱 같은 곳에서 제공하는 1인분 기준 수치를 활용하세요.
     
