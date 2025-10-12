@@ -1,36 +1,36 @@
-# name: Generate and Publish Lunch RSS
+name: Generate and Publish Lunch RSS
 
-# on:
-#   schedule:
-#     - cron: '40 22 * * 0-4'
-#   workflow_dispatch:
+on:
+  schedule:
+    - cron: '40 22 * * 0-4'
+  workflow_dispatch:
 
-# jobs:
-#   generate_rss:
-#     runs-on: ubuntu-latest
+jobs:
+  generate_rss:
+    runs-on: ubuntu-latest
 
-#     steps:
-#       - name: Checkout Repository
-#         uses: actions/checkout@v3
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
 
-#       - name: Set up Python
-#         uses: actions/setup-python@v4
-#         with:
-#           python-version: '3.9'
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
 
-#       - name: Install dependencies
-#         run: pip install requests beautifulsoup4 openai
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4 openai
 
-#       - name: Generate RSS XML
-#         env:
-#           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY_SGNR }}
-#         run: python lunch_bot_rss.py
+      - name: Generate RSS XML
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY_SGNR }}
+        run: python lunch_bot_rss.py
 
-#       - name: Commit and Push Updated RSS
-#         run: |
-#           git config --global user.name "github-actions"
-#           git config --global user.email "actions@github.com"
-#           git add docs/lunch_rss.xml
-#           git commit -m "Update lunch menu RSS feed"
-#           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-#           git push
+      - name: Commit and Push Updated RSS
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git add docs/lunch_rss.xml
+          git commit -m "Update lunch menu RSS feed"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git push
